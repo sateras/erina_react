@@ -1,20 +1,71 @@
 import "./assets/css/App.scss";
+import Card from "./components/Card";
 
 function App() {
   return (
     <div>
+      <div style={{ display: "none" }} className="overlay">
+        <div className="drawer">
+          <h3>CART</h3>
+          <div className="cart">
+            <div className="cartItem">
+              <div className="cartItemImg">
+                <img width={75} src="/products/1.jpg" alt="prod" />
+              </div>
+              <div>
+                <p>Ladies yellow top</p>
+                <b>$25</b>
+              </div>
+              <button className="cart_btn">Delete</button>
+            </div>
+            <div className="cartItem">
+              <div className="cartItemImg">
+                <img width={75} src="/products/1.jpg" alt="prod" />
+              </div>
+              <div>
+                <p>Ladies yellow top</p>
+                <b>$25</b>
+              </div>
+              <button className="cart_btn">Delete</button>
+            </div>
+            <div className="cartItem">
+              <div className="cartItemImg">
+                <img width={75} src="/products/1.jpg" alt="prod" />
+              </div>
+              <div>
+                <p>Ladies yellow top</p>
+                <b>$25</b>
+              </div>
+              <button className="cart_btn">Delete</button>
+            </div>
+          </div>
+          <div className="cartTotalBlock">
+            <div className="cartTotal">
+              <span>Total</span>
+              <div></div>
+              <b>$255</b>
+            </div>
+            <div>
+              <span>Nalog 5%</span>
+              <div></div>
+              <b>$12.25</b>
+            </div>
+          </div>
+          <button className="greenBtn">Confirm</button>
+        </div>
+      </div>
       <header className="header">
         <a className="header_link" href="/">
           <img src="/svg/logo.svg" />
           <h2>Erina</h2>
         </a>
         <nav>
-          <span>Home</span>
-          <span>About</span>
-          <span>Shop</span>
-          <span>Page</span>
-          <span>Blog</span>
-          <span>Contact</span>
+          <a href="#">Home</a>
+          <a href="#">About</a>
+          <a href="#">Shop</a>
+          <a href="#">Page</a>
+          <a href="#">Blog</a>
+          <a href="#">Contact</a>
         </nav>
         <div className="header_buttons">
           <a href="#">
@@ -61,45 +112,9 @@ function App() {
           <h3>Latest arrival</h3>
           <h4>Showing our latest arrival on this summer</h4>
           <div className="items_table">
-            <div className="item">
-              <div className="item_img">
-                <img src="/products/1.jpg" alt="prod" />
-              </div>
-              <p>Ladies yellow top</p>
-              <p>$25</p>
-            </div>
-
-            <div className="item">
-              <div className="item_img">
-                <img src="/products/2.jpg" alt="prod" />
-              </div>
-              <p>Ladies yellow top</p>
-              <p>$25</p>
-            </div>
-
-            <div className="item">
-              <div className="item_img">
-                <img src="/products/3.jpg" alt="prod" />
-              </div>
-              <p>Ladies yellow top</p>
-              <p>$25</p>
-            </div>
-
-            <div className="item">
-              <div className="item_img">
-                <img src="/products/4.jpg" alt="prod" />
-              </div>
-              <p>Ladies yellow top</p>
-              <p>$25</p>
-            </div>
-
-            <div className="item">
-              <div className="item_img">
-                <img src="/products/1.jpg" alt="prod" />
-              </div>
-              <p>Ladies yellow top</p>
-              <p>$25</p>
-            </div>
+            <Card />
+            <Card />
+            <Card />
           </div>
         </div>
       </main>
