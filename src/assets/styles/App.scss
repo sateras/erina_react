@@ -126,17 +126,11 @@ a {
       margin: auto;
     }
   }
-} //main
-
-.footer {
-  padding-top: 60px;
-  background: #e8eaef;
-  display: flex;
-  .footer_right {
-    display: flex;
-    justify-content: space-between;
+  .item {
+    margin-right: 40px;
+    margin-bottom: 40px;
   }
-} //footer
+} //main
 
 .overlay {
   position: absolute;
@@ -184,6 +178,7 @@ a {
     h3 {
       margin-bottom: 20px;
     }
+
     .cartItem {
       position: relative;
       display: flex;

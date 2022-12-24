@@ -1,5 +1,7 @@
-import "./assets/css/App.scss";
+import "./assets/styles/App.scss";
 import Card from "./components/Card";
+import Footer from "./components/Footer";
+import Header from "./components/Header";
 
 function App() {
   return (
@@ -54,31 +56,7 @@ function App() {
           <button className="greenBtn">Confirm</button>
         </div>
       </div>
-      <header className="header">
-        <a className="header_link" href="/">
-          <img src="/svg/logo.svg" />
-          <h2>Erina</h2>
-        </a>
-        <nav>
-          <a href="#">Home</a>
-          <a href="#">About</a>
-          <a href="#">Shop</a>
-          <a href="#">Page</a>
-          <a href="#">Blog</a>
-          <a href="#">Contact</a>
-        </nav>
-        <div className="header_buttons">
-          <a href="#">
-            <img src="/svg/search_icon.svg" alt="search-icon" />
-          </a>
-          <a href="#">
-            <img src="/svg/person_icon.svg" alt="person-icon" />
-          </a>
-          <a href="#">
-            <img src="/svg/cart_icon.svg" alt="cart-icon" />
-          </a>
-        </div>
-      </header>
+      <Header />
       <div className="content">
         <div className="container">Content is here!</div>
       </div>
@@ -119,33 +97,7 @@ function App() {
         </div>
       </main>
 
-      <footer className="footer">
-        <div className="container">
-          <div></div>
-          <div className="footer_right">
-            <div>
-              <h6>Address</h6>
-              <p>20, Awesome Road, New York, Usa 4D BS3</p>
-              <p>+123 456 7890</p>
-              <p>hello@ulina.com</p>
-            </div>
-            <div>
-              <h6>Usful Links</h6>
-              <p>Shop Cupon</p>
-              <p>About Us</p>
-              <p>Carrer</p>
-              <p>Supports</p>
-            </div>
-            <div>
-              <h6>Categories</h6>
-              <p>women</p>
-              <p>Accessories</p>
-              <p>Jewellary</p>
-              <p>Beauty Item</p>
-            </div>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }
