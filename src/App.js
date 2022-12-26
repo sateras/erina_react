@@ -1,7 +1,7 @@
 import "./assets/styles/App.scss";
 import Card from "./components/Card/Card";
 import Footer from "./components/Footer/Footer";
-import Header from "./components/Header";
+import Header from "./components/Header/Header";
 import Drawer from "./components/Drawer";
 
 const arr = [

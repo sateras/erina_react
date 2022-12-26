@@ -6,66 +6,6 @@ a {
   text-decoration: none;
 }
 
-.header {
-  background: #deecec;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  padding: 35px;
-  nav {
-    display: flex;
-    align-items: center;
-    a {
-      margin-right: 40px;
-      font-family: "Work Sans";
-      font-style: normal;
-      font-weight: 300;
-      font-size: 18px;
-      color: black;
-      &:after {
-        display: block;
-        content: "";
-        height: 3px;
-        width: 0%;
-        background-color: #225384;
-        transition: width 0.4s ease-in-out;
-      }
-      &:hover:after,
-      &:focus:after {
-        width: 100%;
-      }
-    }
-    // span:hover {
-    //   font-weight: 500;
-    // }
-  }
-  a {
-    h2 {
-      font-family: "Cormorant";
-      font-style: normal;
-      font-weight: 700;
-      font-size: 30px;
-    }
-  }
-
-  border-bottom: 1.5px #84babe solid;
-}
-.header_link {
-  display: flex;
-  align-items: center;
-  margin-left: 5%;
-  color: #589195;
-  img {
-    margin-right: 10px;
-  }
-}
-.header_buttons {
-  display: flex;
-  width: 10%;
-  justify-content: space-between;
-  margin-right: 5%;
-}
-
 .content {
   background: #deecec;
   margin-bottom: 60px;
