@@ -1,11 +1,11 @@
-import "../assets/styles/Footer.scss";
+import styles from "./Footer.module.scss";
 
 function Footer(params) {
   return (
-    <footer className="footer">
-      <div className="container">
+    <footer className={styles.footer}>
+      <div className={styles.container}>
         <div></div>
-        <div className="footer_right">
+        <div className={styles.footer_right}>
           <div>
             <h6>Address</h6>
             <p>20, Awesome Road, New York, Usa 4D BS3</p>
