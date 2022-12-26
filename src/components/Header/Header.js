@@ -1,6 +1,6 @@
 import styles from "./Header.module.scss";
 
-function Header(params) {
+function Header(props) {
   return (
     <header className={styles.header}>
       <a className={styles.header_link} href="/">
@@ -28,15 +28,15 @@ function Header(params) {
         </a>
       </nav>
       <div className={styles.header_buttons}>
-        <a href="#">
+        <div className={styles.cursor}>
           <img src="/svg/search_icon.svg" alt="search-icon" />
-        </a>
-        <a href="#">
+        </div>
+        <div className={styles.cursor}>
           <img src="/svg/person_icon.svg" alt="person-icon" />
-        </a>
-        <a href="#">
+        </div>
+        <div className={styles.cursor} onClick={() => props.onClickCart(true)}>
           <img src="/svg/cart_icon.svg" alt="cart-icon" />
-        </a>
+        </div>
       </div>
     </header>
   );

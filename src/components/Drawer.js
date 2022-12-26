@@ -1,6 +1,6 @@
-function Drawer(params) {
+function Drawer(props) {
   return (
-    <div style={{ display: "none" }} className="overlay">
+    <div onClick={() => props.onClickOverlay(false)} className="overlay">
       <div className="drawer">
         <h3>CART</h3>
         <div className="cart">

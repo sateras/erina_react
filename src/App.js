@@ -3,6 +3,7 @@ import Card from "./components/Card/Card";
 import Footer from "./components/Footer/Footer";
 import Header from "./components/Header/Header";
 import Drawer from "./components/Drawer";
+import { useState } from "react";
 
 const arr = [
   { id: 1, title: "Ladies yellow top", price: 25, img: "/products/1.jpg" },
@@ -11,11 +12,12 @@ const arr = [
 ];
 
 function App() {
+  const [cartOpened, setCartOpened] = useState(false);
   return (
     <div>
-      <Drawer />
+      {cartOpened ? <Drawer onClickOverlay={setCartOpened} /> : null}
 
-      <Header />
+      <Header onClickCart={setCartOpened} />
 
       <div className="content">
         <div className="container">Content is here!</div>
