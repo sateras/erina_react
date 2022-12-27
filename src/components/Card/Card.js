@@ -1,9 +1,12 @@
 import styles from "./Card.module.scss";
 
-function Card({ title, price, img, reviews }) {
+function Card({ id, title, price, img, reviews, onAddToCart, addToFavorite }) {
+  const onClickAddToCart = () => {
+    onAddToCart({ title: title, id: id, price: price, img: img });
+  };
   return (
     <div className={styles.card}>
-      <div onClick={() => console.log("Tapped")} className={styles.addToCart}>
+      <div onClick={onClickAddToCart} className={styles.addToCart}>
         +
       </div>
       <div

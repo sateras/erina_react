@@ -1,18 +1,18 @@
-function Drawer(props) {
+function Drawer({ cartItems, onClickOverlay }) {
   return (
-    <div onClick={() => props.onClickOverlay(false)} className="overlay">
+    <div onClick={() => onClickOverlay(false)} className="overlay">
       <div className="drawer">
         <h3>CART</h3>
         <div className="cart">
-          {props.cartItem ? (
-            props.cartItems.map((obj) => (
+          {cartItems ? (
+            cartItems.map((obj) => (
               <div className="cartItem">
                 <div className="cartItemImg">
-                  <img width={75} src="/products/1.jpg" alt="prod" />
+                  <img width={75} src={obj.img} alt="prod" />
                 </div>
                 <div>
-                  <p>Ladies yellow top</p>
-                  <b>$25</b>
+                  <p>{obj.title}</p>
+                  <b>{obj.price}</b>
                 </div>
                 <button className="cart_btn">Delete</button>
               </div>
@@ -33,7 +33,7 @@ function Drawer(props) {
             <b>$12.25</b>
           </div>
         </div>
-        {props.cartItem ? (
+        {cartItems ? (
           <button className="greenBtn">Confirm</button>
         ) : (
           <button className="greenBtn noneActiveBtn">Confirm</button>

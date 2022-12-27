@@ -71,6 +71,10 @@ function App() {
       });
   }, []);
 
+  const addToCart = (item) => {
+    setCartItems([...cartItems, item]);
+    console.log(cartItems);
+  };
   return (
     <div>
       {cartOpened ? (
@@ -113,11 +117,13 @@ function App() {
           <div className="items_table">
             {items.map((obj) => (
               <Card
+                id={obj.id}
                 key={obj.id}
                 title={obj.title}
                 price={obj.price}
                 img={obj.img}
                 reviews={obj.reviews}
+                onAddToCart={(thisProd) => addToCart(thisProd)}
               />
             ))}
           </div>
