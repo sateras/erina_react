@@ -1,20 +1,52 @@
 .card {
+  margin-left: 20px;
   margin-right: 40px;
   margin-bottom: 40px;
   .card_img {
     background: #f7f8fc;
     border-radius: 4px;
-    width: 220px;
-    height: 300px;
+    width: 240px;
+    height: 320px;
     display: flex;
     align-items: center;
-    img {
+    margin-bottom: 5px;
+
+    .img {
       margin: auto;
+      max-width: 240px;
+      max-height: 320px;
     }
   }
   position: relative;
 }
-
+.stars {
+  color: rgb(242, 157, 0);
+  margin-right: 10px;
+}
+.first_row {
+  margin-bottom: 15px;
+}
+.price {
+  font-family: "Work Sans";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 25px;
+  color: #297176;
+}
+.title {
+  font-family: "Work Sans";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 22px;
+  color: #34394c;
+  margin-bottom: 6px;
+}
+.reviews {
+  font-family: "Work Sans";
+  font-style: normal;
+  font-weight: 300;
+  font-size: 16px;
+}
 .addToCart {
   position: absolute;
   text-align: center;

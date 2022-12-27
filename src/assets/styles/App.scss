@@ -54,6 +54,7 @@ a {
   }
   .items_table {
     display: flex;
+    flex-wrap: wrap;
   }
 } //main
 
@@ -146,6 +147,13 @@ a {
       }
       &:active {
         background-color: darken($color: #9dd558, $amount: 1.1);
+      }
+    }
+    .noneActiveBtn {
+      background-color: #c9c9c9;
+      cursor: auto;
+      &:hover {
+        background: #c9c9c9;
       }
     }
   }

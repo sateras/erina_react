@@ -1,6 +1,6 @@
 import styles from "./Card.module.scss";
 
-function Card({ title, price, img }) {
+function Card({ title, price, img, reviews }) {
   return (
     <div className={styles.card}>
       <div onClick={() => console.log("Tapped")} className={styles.addToCart}>
@@ -13,10 +13,14 @@ function Card({ title, price, img }) {
         ❤
       </div>
       <div className={styles.card_img}>
-        <img src={img} alt="prod" />
+        <img className={styles.img} src={img} alt="prod" />
       </div>
-      <p>{title}</p>
-      <p>${price}</p>
+      <div className={styles.first_row}>
+        <span className={styles.stars}>★★★★★</span>
+        <span className={styles.reviews}>Reviews {reviews}</span>
+      </div>
+      <p className={styles.title}>{title}</p>
+      <p className={styles.price}>${price}</p>
     </div>
   );
 }

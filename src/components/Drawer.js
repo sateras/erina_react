@@ -4,36 +4,22 @@ function Drawer(props) {
       <div className="drawer">
         <h3>CART</h3>
         <div className="cart">
-          <div className="cartItem">
-            <div className="cartItemImg">
-              <img width={75} src="/products/1.jpg" alt="prod" />
-            </div>
-            <div>
-              <p>Ladies yellow top</p>
-              <b>$25</b>
-            </div>
-            <button className="cart_btn">Delete</button>
-          </div>
-          <div className="cartItem">
-            <div className="cartItemImg">
-              <img width={75} src="/products/1.jpg" alt="prod" />
-            </div>
-            <div>
-              <p>Ladies yellow top</p>
-              <b>$25</b>
-            </div>
-            <button className="cart_btn">Delete</button>
-          </div>
-          <div className="cartItem">
-            <div className="cartItemImg">
-              <img width={75} src="/products/1.jpg" alt="prod" />
-            </div>
-            <div>
-              <p>Ladies yellow top</p>
-              <b>$25</b>
-            </div>
-            <button className="cart_btn">Delete</button>
-          </div>
+          {props.cartItem ? (
+            props.cartItems.map((obj) => (
+              <div className="cartItem">
+                <div className="cartItemImg">
+                  <img width={75} src="/products/1.jpg" alt="prod" />
+                </div>
+                <div>
+                  <p>Ladies yellow top</p>
+                  <b>$25</b>
+                </div>
+                <button className="cart_btn">Delete</button>
+              </div>
+            ))
+          ) : (
+            <div>Cart is PUSTOI</div>
+          )}
         </div>
         <div className="cartTotalBlock">
           <div className="cartTotal">
@@ -47,7 +33,11 @@ function Drawer(props) {
             <b>$12.25</b>
           </div>
         </div>
-        <button className="greenBtn">Confirm</button>
+        {props.cartItem ? (
+          <button className="greenBtn">Confirm</button>
+        ) : (
+          <button className="greenBtn noneActiveBtn">Confirm</button>
+        )}
       </div>
     </div>
   );
