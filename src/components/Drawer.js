@@ -6,7 +6,7 @@ function Drawer({ cartItems, onClickOverlay }) {
         <div className="cart">
           {cartItems ? (
             cartItems.map((obj) => (
-              <div className="cartItem">
+              <div key={obj.id} className="cartItem">
                 <div className="cartItemImg">
                   <img width={75} src={obj.img} alt="prod" />
                 </div>

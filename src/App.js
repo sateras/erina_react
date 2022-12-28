@@ -72,8 +72,16 @@ function App() {
   }, []);
 
   const addToCart = (item) => {
-    setCartItems([...cartItems, item]);
-    console.log(cartItems);
+    for (let cartItem of cartItems) {
+      if (cartItem.id === item.id) {
+        console.log("on est");
+        return;
+      } else {
+        setCartItems((prev) => [...prev, item]);
+        return;
+      }
+    }
+    setCartItems((prev) => [...prev, item]);
   };
   return (
     <div>
