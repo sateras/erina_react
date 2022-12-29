@@ -68,6 +68,7 @@ function App() {
       .then((res) => {
         setItems(res.data);
       });
+
     axios
       .get("https://635cde0ecb6cf98e56a775e5.mockapi.io/api/v1/cart")
       .then((res) => {
@@ -80,15 +81,17 @@ function App() {
     axios.delete(
       `https://635cde0ecb6cf98e56a775e5.mockapi.io/api/v1/cart/${id}`
     );
+    console.log(id);
   };
 
   const addToCart = (item) => {
     if (cartItems.indexOf(item) === -1) {
+      console.log(cartItems);
+      console.log(items);
       axios.post(
         "https://635cde0ecb6cf98e56a775e5.mockapi.io/api/v1/cart",
         item
       );
-
       setCartItems((prev) => [...prev, item]);
       return;
     }
@@ -100,6 +103,7 @@ function App() {
           onClickOverlay={setCartOpened}
           cartItems={cartItems}
           onDeleteFromCart={deleteFromCart}
+          setCartItems={setCartItems}
         />
       ) : null}
 
@@ -139,13 +143,12 @@ function App() {
           <div className="items_table">
             {items.map((obj) => (
               <Card
-                id={obj.id}
-                key={obj.id}
+                key={obj.title}
                 title={obj.title}
                 price={obj.price}
                 img={obj.img}
                 reviews={obj.reviews}
-                onAddToCart={(thisProd) => addToCart(obj)}
+                onAddToCart={() => addToCart(obj)}
                 isInCart={cartItems.indexOf(obj) !== -1}
               />
             ))}
