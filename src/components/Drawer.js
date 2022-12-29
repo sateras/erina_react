@@ -1,4 +1,4 @@
-function Drawer({ cartItems, onClickOverlay }) {
+function Drawer({ cartItems, onClickOverlay, onDeleteFromCart }) {
   return (
     <div onClick={() => onClickOverlay(false)} className="overlay">
       <div className="drawer">
@@ -14,7 +14,12 @@ function Drawer({ cartItems, onClickOverlay }) {
                   <p>{obj.title}</p>
                   <b>{obj.price}</b>
                 </div>
-                <button className="cart_btn">Delete</button>
+                <button
+                  onClick={() => onDeleteFromCart(obj.id)}
+                  className="cart_btn"
+                >
+                  Delete
+                </button>
               </div>
             ))
           ) : (

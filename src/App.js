@@ -4,6 +4,7 @@ import Footer from "./components/Footer/Footer";
 import Header from "./components/Header/Header";
 import Drawer from "./components/Drawer";
 import { useEffect, useState } from "react";
+import axios from "axios";
 
 // [
 //   {
@@ -62,31 +63,44 @@ function App() {
   const [cartItems, setCartItems] = useState([]);
 
   useEffect(() => {
-    fetch("https://635cde0ecb6cf98e56a775e5.mockapi.io/api/v1/wears")
-      .then((data) => {
-        return data.json();
-      })
-      .then((json) => {
-        setItems(json);
+    axios
+      .get("https://635cde0ecb6cf98e56a775e5.mockapi.io/api/v1/wears")
+      .then((res) => {
+        setItems(res.data);
+      });
+    axios
+      .get("https://635cde0ecb6cf98e56a775e5.mockapi.io/api/v1/cart")
+      .then((res) => {
+        setCartItems(res.data);
       });
   }, []);
 
+  const deleteFromCart = (id) => {
+    setCartItems((prev) => prev.filter((item) => item.id !== id));
+    axios.delete(
+      `https://635cde0ecb6cf98e56a775e5.mockapi.io/api/v1/cart/${id}`
+    );
+  };
+
   const addToCart = (item) => {
-    for (let cartItem of cartItems) {
-      if (cartItem.id === item.id) {
-        console.log("on est");
-        return;
-      } else {
-        setCartItems((prev) => [...prev, item]);
-        return;
-      }
+    if (cartItems.indexOf(item) === -1) {
+      axios.post(
+        "https://635cde0ecb6cf98e56a775e5.mockapi.io/api/v1/cart",
+        item
+      );
+
+      setCartItems((prev) => [...prev, item]);
+      return;
     }
-    setCartItems((prev) => [...prev, item]);
   };
   return (
     <div>
       {cartOpened ? (
-        <Drawer onClickOverlay={setCartOpened} cartItems={cartItems} />
+        <Drawer
+          onClickOverlay={setCartOpened}
+          cartItems={cartItems}
+          onDeleteFromCart={deleteFromCart}
+        />
       ) : null}
 
       <Header onClickCart={setCartOpened} />
@@ -131,7 +145,8 @@ function App() {
                 price={obj.price}
                 img={obj.img}
                 reviews={obj.reviews}
-                onAddToCart={(thisProd) => addToCart(thisProd)}
+                onAddToCart={(thisProd) => addToCart(obj)}
+                isInCart={cartItems.indexOf(obj) !== -1}
               />
             ))}
           </div>

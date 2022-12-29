@@ -1,16 +1,31 @@
 import styles from "./Card.module.scss";
 
-function Card({ id, title, price, img, reviews, onAddToCart, addToFavorite }) {
+function Card({
+  id,
+  title,
+  price,
+  img,
+  reviews,
+  onAddToCart,
+  addToFavorite,
+  isInCart,
+}) {
   const onClickAddToCart = () => {
     onAddToCart({ title: title, id: id, price: price, img: img });
   };
   return (
     <div className={styles.card}>
-      <div onClick={onClickAddToCart} className={styles.addToCart}>
-        +
-      </div>
+      {isInCart ? (
+        <div onClick={onClickAddToCart} className={styles.addToCartBefore}>
+          ✓
+        </div>
+      ) : (
+        <div onClick={onClickAddToCart} className={styles.addToCart}>
+          +
+        </div>
+      )}
       <div
-        onClick={() => console.log("Tapped")}
+        onClick={() => console.log(isInCart)}
         className={styles.addToFavorite}
       >
         ❤
