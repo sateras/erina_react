@@ -1,3 +1,4 @@
+import styles from "./Drawer.module.scss";
 import axios from "axios";
 import { useEffect } from "react";
 
@@ -20,39 +21,45 @@ function Drawer({ cartItems, onClickOverlay, onDeleteFromCart, setCartItems }) {
 
   const cartTotalPrice = totalPrice(cartItems);
   return (
-    <div onClick={() => onClickOverlay(false)} className="overlay">
-      <div className="drawer">
-        <h3>CART</h3>
-        <div className="cart">
+    <div className={styles.overlay}>
+      <div className={styles.drawer}>
+        <div className={styles.cart_title}>
+          <h3>CART</h3>
+          <div onClick={() => onClickOverlay(false)} className={styles.out_btn}>
+            ←
+          </div>
+        </div>
+
+        <div className={styles.cart}>
           {cartItems.length > 0 ? (
             cartItems.map((obj) => (
-              <div key={obj.id} className="cartItem">
-                <div className="cartItemImg">
+              <div key={obj.id} className={styles.cartItem}>
+                <div className={styles.cartItemImg}>
                   <img width={75} src={obj.img} alt="prod" />
                 </div>
                 <div>
                   <p>{obj.title}</p>
-                  <b>{obj.price}</b>
+                  <b>${obj.price}</b>
                 </div>
                 <button
                   onClick={() => onDeleteFromCart(obj.id)}
-                  className="cart_btn"
+                  className={styles.cart_btn}
                 >
                   Delete
                 </button>
               </div>
             ))
           ) : (
-            <div className="cartItemIsEmpty">
+            <div className={styles.cartItemIsEmpty}>
               <b>Cart is empty</b>
-              <p className="cartItemIsEmptyP">
+              <p className={styles.cartItemIsEmptyP}>
                 Please add something to your cart
               </p>
             </div>
           )}
         </div>
-        <div className="cartTotalBlock">
-          <div className="cartTotal">
+        <div className={styles.cartTotalBlock}>
+          <div className={styles.cartTotal}>
             <span>Total</span>
             <div></div>
             <b>${cartTotalPrice}</b>
@@ -64,9 +71,9 @@ function Drawer({ cartItems, onClickOverlay, onDeleteFromCart, setCartItems }) {
           </div>
         </div>
         {cartItems.length > 0 ? (
-          <button className="greenBtn">Confirm</button>
+          <button className={styles.greenBtn}>Confirm</button>
         ) : (
-          <button className="greenBtn noneActiveBtn">Confirm</button>
+          <button className={styles.noneActiveBtn}>Confirm</button>
         )}
       </div>
     </div>

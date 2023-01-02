@@ -2,7 +2,7 @@ import "./assets/styles/App.scss";
 import Card from "./components/Card/Card";
 import Footer from "./components/Footer/Footer";
 import Header from "./components/Header/Header";
-import Drawer from "./components/Drawer";
+import Drawer from "./components/Drawer/Drawer";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
@@ -69,11 +69,11 @@ function App() {
         setItems(res.data);
       });
 
-    axios
-      .get("https://635cde0ecb6cf98e56a775e5.mockapi.io/api/v1/cart")
-      .then((res) => {
-        setCartItems(res.data);
-      });
+    // axios
+    //   .get("https://635cde0ecb6cf98e56a775e5.mockapi.io/api/v1/cart")
+    //   .then((res) => {
+    //     setCartItems(res.data);
+    //   });
   }, []);
 
   const deleteFromCart = (id) => {
@@ -149,7 +149,9 @@ function App() {
                 img={obj.img}
                 reviews={obj.reviews}
                 onAddToCart={() => addToCart(obj)}
-                isInCart={cartItems.indexOf(obj) !== -1}
+                isInCart={cartItems.forEach((i) => {
+                  if (i.id === obj.id) return true;
+                })}
               />
             ))}
           </div>
