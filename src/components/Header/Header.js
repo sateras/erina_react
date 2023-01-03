@@ -1,31 +1,32 @@
+import { Link } from "react-router-dom";
 import styles from "./Header.module.scss";
 
 function Header(props) {
   return (
     <header className={styles.header}>
-      <a className={styles.header_link} href="/">
+      <Link className={styles.header_link} to={`/`}>
         <img src="/svg/logo.svg" />
         <h2 className={styles.h2}>Erina</h2>
-      </a>
+      </Link>
       <nav className={styles.nav}>
-        <a className={styles.a} href="#">
+        <Link className={styles.a} to={`/`}>
           Home
-        </a>
-        <a className={styles.a} href="#">
+        </Link>
+        <Link className={styles.a} to={`/about`}>
           About
-        </a>
-        <a className={styles.a} href="#">
+        </Link>
+        <Link className={styles.a} to={`/shop`}>
           Shop
-        </a>
-        <a className={styles.a} href="#">
-          Page
-        </a>
-        <a className={styles.a} href="#">
+        </Link>
+        <Link className={styles.a} to={`/blog`}>
           Blog
-        </a>
-        <a className={styles.a} href="#">
+        </Link>
+        <Link className={styles.a} to={`/contact`}>
           Contact
-        </a>
+        </Link>
+        <Link className={styles.a} to={`/favorites`}>
+          My Favorites
+        </Link>
       </nav>
       <div className={styles.header_buttons}>
         <div className={styles.cursor}>
