@@ -6,7 +6,7 @@ function Card({
   img,
   reviews,
   onAddToCart,
-  addToFavorite,
+  onAddToFavorites,
   isInCart,
 }) {
   return (
@@ -20,10 +20,7 @@ function Card({
           +
         </div>
       )}
-      <div
-        onClick={() => console.log(isInCart)}
-        className={styles.addToFavorite}
-      >
+      <div onClick={onAddToFavorites} className={styles.addToFavorite}>
         ❤
       </div>
       <div className={styles.card_img}>

@@ -75,6 +75,7 @@ const router = createBrowserRouter([
 function App() {
   const [cartOpened, setCartOpened] = useState(false);
   const [items, setItems] = useState([]);
+  const [favorites, setFavorites] = useState([]);
   const [cartItems, setCartItems] = useState([]);
 
   useEffect(() => {
@@ -84,11 +85,11 @@ function App() {
         setItems(res.data);
       });
 
-    // axios
-    //   .get("https://635cde0ecb6cf98e56a775e5.mockapi.io/api/v1/cart")
-    //   .then((res) => {
-    //     setCartItems(res.data);
-    //   });
+    axios
+      .get("https://635cde0ecb6cf98e56a775e5.mockapi.io/api/v1/cart")
+      .then((res) => {
+        setCartItems(res.data);
+      });
   }, []);
 
   const deleteFromCart = (id) => {
@@ -96,18 +97,33 @@ function App() {
     axios.delete(
       `https://635cde0ecb6cf98e56a775e5.mockapi.io/api/v1/cart/${id}`
     );
-    console.log(id);
   };
 
-  const addToCart = (item) => {
+  const addToCart = async (item) => {
+    try {
+      if (cartItems.indexOf(item) === -1) {
+        console.log(cartItems);
+        console.log(items);
+        const { data } = await axios.post(
+          "https://635cde0ecb6cf98e56a775e5.mockapi.io/api/v1/cart",
+          item
+        );
+        setCartItems((prev) => [...prev, data]);
+        return;
+      }
+    } catch (error) {
+      alert("Не удалость добваить в корзину! (Подробнее в консоли)");
+      console.log("Error:  ", error);
+    }
+  };
+
+  const addToFavorites = (item) => {
     if (cartItems.indexOf(item) === -1) {
-      console.log(cartItems);
-      console.log(items);
       axios.post(
-        "https://635cde0ecb6cf98e56a775e5.mockapi.io/api/v1/cart",
+        "https://635cde0ecb6cf98e56a775e5.mockapi.io/api/v1/favorites",
         item
       );
-      setCartItems((prev) => [...prev, item]);
+      setFavorites((prev) => [...prev, item]);
       return;
     }
   };
@@ -121,21 +137,45 @@ function App() {
           setCartItems={setCartItems}
         />
       ) : null}
+      <div className="appBody">
+        <div className="appContent">
+          <Header onClickCart={setCartOpened} />
 
-      <Header onClickCart={setCartOpened} />
+          {/* <RouterProvider router={router} /> */}
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <Home
+                  addToCart={addToCart}
+                  addToFavorites={addToFavorites}
+                  items={items}
+                  cartItems={cartItems}
+                  favorites={favorites}
+                />
+              }
+            />
+            <Route
+              path="/favorites"
+              element={
+                <Favorites favorites={favorites} setFavorites={setFavorites} />
+              }
+            />
+            <Route
+              path="/about"
+              element={<h3 className="container">About</h3>}
+            />
+            <Route path="/shop" element={<h3 className="container">Shop</h3>} />
+            <Route path="/blog" element={<h3 className="container">Blog</h3>} />
+            <Route
+              path="/contact"
+              element={<h3 className="container">Contact</h3>}
+            />
+          </Routes>
+        </div>
 
-      {/* <RouterProvider router={router} /> */}
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <Home addToCart={addToCart} items={items} cartItems={cartItems} />
-          }
-        ></Route>
-        <Route path="/favorites" element={<Favorites />}></Route>
-      </Routes>
-
-      <Footer />
+        <Footer />
+      </div>
     </div>
   );
 }

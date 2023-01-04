@@ -11,13 +11,13 @@ function Drawer({ cartItems, onClickOverlay, onDeleteFromCart, setCartItems }) {
     return total;
   };
 
-  useEffect(() => {
-    axios
-      .get("https://635cde0ecb6cf98e56a775e5.mockapi.io/api/v1/cart")
-      .then((res) => {
-        setCartItems(res.data);
-      });
-  }, []);
+  // useEffect(() => {
+  //   axios
+  //     .get("https://635cde0ecb6cf98e56a775e5.mockapi.io/api/v1/cart")
+  //     .then((res) => {
+  //       setCartItems(res.data);
+  //     });
+  // }, []);
 
   const cartTotalPrice = totalPrice(cartItems);
   return (

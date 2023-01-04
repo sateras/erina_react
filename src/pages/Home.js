@@ -1,6 +1,6 @@
 import Card from "../components/Card/Card";
 
-function Home({ cartItems, items, addToCart }) {
+function Home({ cartItems, items, addToCart, favorites, addToFavorites }) {
   return (
     <>
       <div className="content">
@@ -43,9 +43,11 @@ function Home({ cartItems, items, addToCart }) {
                 img={obj.img}
                 reviews={obj.reviews}
                 onAddToCart={() => addToCart(obj)}
-                isInCart={cartItems.forEach((i) => {
-                  if (i.id === obj.id) return true;
-                })}
+                onAddToFavorites={() => addToFavorites(obj)}
+                isInCart={cartItems.find((item) => item.title === obj.title)}
+                isInFavorites={favorites.find(
+                  (item) => item.title === obj.title
+                )}
               />
             ))}
           </div>
