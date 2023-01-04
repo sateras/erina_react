@@ -79,22 +79,44 @@ function App() {
   const [cartItems, setCartItems] = useState([]);
 
   useEffect(() => {
-    axios
-      .get("https://635cde0ecb6cf98e56a775e5.mockapi.io/api/v1/wears")
-      .then((res) => {
-        setItems(res.data);
-      });
+    // axios
+    //   .get("https://635cde0ecb6cf98e56a775e5.mockapi.io/api/v1/wears")
+    //   .then((res) => {
+    //     setItems(res.data);
+    //   });
 
-    axios
-      .get("https://635cde0ecb6cf98e56a775e5.mockapi.io/api/v1/cart")
-      .then((res) => {
-        setCartItems(res.data);
-      });
-    axios
-      .get("https://635cde0ecb6cf98e56a775e5.mockapi.io/api/v1/favorites")
-      .then((res) => {
-        setFavorites(res.data);
-      });
+    // axios
+    //   .get("https://635cde0ecb6cf98e56a775e5.mockapi.io/api/v1/cart")
+    //   .then((res) => {
+    //     setCartItems(res.data);
+    //   });
+    // axios
+    //   .get("https://635cde0ecb6cf98e56a775e5.mockapi.io/api/v1/favorites")
+    //   .then((res) => {
+    //     setFavorites(res.data);
+    //   });
+
+    // --Выводы--
+    // если будет сильный разброс во времини в запросах
+    // над будет делать через async функцию внутри useEffect
+    // но это продлит время запроса
+
+    async function makeRequest() {
+      const wears = await axios.get(
+        "https://635cde0ecb6cf98e56a775e5.mockapi.io/api/v1/wears"
+      );
+      const cart = await axios.get(
+        "https://635cde0ecb6cf98e56a775e5.mockapi.io/api/v1/cart"
+      );
+      const favorites = await axios.get(
+        "https://635cde0ecb6cf98e56a775e5.mockapi.io/api/v1/favorites"
+      );
+
+      setItems(wears.data);
+      setCartItems(cart.data);
+      setFavorites(favorites.data);
+    }
+    makeRequest();
   }, []);
 
   const deleteFromCart = (id) => {
