@@ -90,6 +90,11 @@ function App() {
       .then((res) => {
         setCartItems(res.data);
       });
+    axios
+      .get("https://635cde0ecb6cf98e56a775e5.mockapi.io/api/v1/favorites")
+      .then((res) => {
+        setFavorites(res.data);
+      });
   }, []);
 
   const deleteFromCart = (id) => {
@@ -117,14 +122,24 @@ function App() {
     }
   };
 
+  const deleteFromFavorites = (id) => {
+    setFavorites((prev) => prev.filter((item) => item.id !== id));
+    axios.delete(
+      `https://635cde0ecb6cf98e56a775e5.mockapi.io/api/v1/favorites/${id}`
+    );
+  };
+
   const addToFavorites = (item) => {
-    if (cartItems.indexOf(item) === -1) {
+    if (favorites.find((favItem) => favItem.title === item.title)) {
+      // axios.delete(
+      //   `https://635cde0ecb6cf98e56a775e5.mockapi.io/api/v1/favorites/${item.id}`
+      // );
+    } else {
       axios.post(
         "https://635cde0ecb6cf98e56a775e5.mockapi.io/api/v1/favorites",
         item
       );
       setFavorites((prev) => [...prev, item]);
-      return;
     }
   };
   return (
@@ -148,7 +163,10 @@ function App() {
               element={
                 <Home
                   addToCart={addToCart}
-                  addToFavorites={addToFavorites}
+                  addToFavorites={addToFavorites} // добавляет в изранное
+                  deleteFromFavorites={deleteFromFavorites} // а он удаляет
+                  // две отдельные фунцкий (addTo, deleteFrom) иззa особенности бекенда
+                  // не умеющего нормально создовать список с уникальным id
                   items={items}
                   cartItems={cartItems}
                   favorites={favorites}
@@ -158,7 +176,13 @@ function App() {
             <Route
               path="/favorites"
               element={
-                <Favorites favorites={favorites} setFavorites={setFavorites} />
+                <Favorites
+                  cartItems={cartItems}
+                  favorites={favorites}
+                  setFavorites={setFavorites}
+                  deleteFromFavorites={deleteFromFavorites}
+                  addToCart={addToCart}
+                />
               }
             />
             <Route

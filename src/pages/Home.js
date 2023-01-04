@@ -1,6 +1,13 @@
 import Card from "../components/Card/Card";
 
-function Home({ cartItems, items, addToCart, favorites, addToFavorites }) {
+function Home({
+  cartItems,
+  items,
+  addToCart,
+  favorites,
+  addToFavorites,
+  deleteFromFavorites,
+}) {
   return (
     <>
       <div className="content">

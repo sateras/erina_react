@@ -2,7 +2,13 @@ import axios from "axios";
 import { useEffect } from "react";
 import Card from "../components/Card/Card";
 
-function Favorites({ favorites, setFavorites }) {
+function Favorites({
+  favorites,
+  setFavorites,
+  cartItems,
+  addToCart,
+  deleteFromFavorites,
+}) {
   useEffect(() => {
     axios
       .get("https://635cde0ecb6cf98e56a775e5.mockapi.io/api/v1/favorites")
@@ -25,10 +31,10 @@ function Favorites({ favorites, setFavorites }) {
                 price={obj.price}
                 img={obj.img}
                 reviews={obj.reviews}
-                // onAddToCart={() => addToCart(obj)}
-                // isInCart={cartItems.forEach((i) => {
-                //   if (i.id === obj.id) return true;
-                // })}
+                isInFavorites={true}
+                onAddToCart={() => addToCart(obj)}
+                onDeleteFromFavorites={() => deleteFromFavorites(obj.id)}
+                isInCart={cartItems.find((item) => item.title === obj.title)}
               />
             ))
           ) : (

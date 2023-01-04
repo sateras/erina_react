@@ -7,12 +7,14 @@ function Card({
   reviews,
   onAddToCart,
   onAddToFavorites,
+  onDeleteFromFavorites,
   isInCart,
+  isInFavorites,
 }) {
   return (
     <div className={styles.card}>
       {isInCart ? (
-        <div onClick={onAddToCart} className={styles.addToCartBefore}>
+        <div onClick={onAddToCart} className={styles.addToCartAfter}>
           ✓
         </div>
       ) : (
@@ -20,9 +22,15 @@ function Card({
           +
         </div>
       )}
-      <div onClick={onAddToFavorites} className={styles.addToFavorite}>
+      <div
+        onClick={isInFavorites ? onDeleteFromFavorites : onAddToFavorites}
+        className={
+          isInFavorites ? styles.addToFavoriteAfter : styles.addToFavorite
+        }
+      >
         ❤
       </div>
+
       <div className={styles.card_img}>
         <img className={styles.img} src={img} alt="prod" />
       </div>
