@@ -1,0 +1,98 @@
+.leftBox {
+  position: relative;
+  width: 540px;
+  height: 325px;
+
+  background: #e9e6f0;
+
+  box-shadow: 5px 5px 15px rgb(218, 218, 218);
+}
+
+.rightBox {
+  position: relative;
+  width: 540px;
+  height: 325px;
+
+  background: #f7ebd9;
+
+  box-shadow: 5px 5px 15px rgb(218, 218, 218);
+}
+.p1 {
+  font-family: "Outfit";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+
+  color: #589195;
+
+  position: absolute;
+  left: 48px;
+  top: 82px;
+}
+.p2 {
+  font-family: "Outfit";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 30px;
+
+  color: #34394c;
+
+  position: absolute;
+  left: 48px;
+  top: 112px;
+}
+.p3 {
+  font-family: "Work Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  text-decoration-line: underline;
+
+  color: #000000;
+
+  position: absolute;
+  left: 48px;
+  top: 195px;
+
+  cursor: pointer;
+  transition: 0.5s;
+  &:after {
+    content: "»";
+    position: absolute;
+    opacity: 0;
+    top: -2px;
+    right: -50px;
+    transition: 0.5s;
+  }
+  &:hover {
+    padding-left: 15px;
+    scale: 1.1;
+  }
+  &:hover:after {
+    scale: 1.5;
+    opacity: 1;
+    right: -15px;
+  }
+}
+
+.offersBox {
+  max-width: 1320px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+
+  margin-top: 30px;
+  margin-bottom: 80px;
+}
+
+.woman {
+  position: absolute;
+  right: -50px;
+  margin: 22px;
+}
+.man {
+  position: absolute;
+  right: 40px;
+  margin: 15px;
+}

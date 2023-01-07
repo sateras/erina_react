@@ -1,4 +1,5 @@
 import Card from "../components/Card/Card";
+import SpecialOffer from "../components/SpecialOffer/specialOffer";
 
 function Home({
   cartItems,
@@ -60,6 +61,8 @@ function Home({
           </div>
         </div>
       </main>
+
+      <SpecialOffer />
     </>
   );
 }
