@@ -1,3 +1,4 @@
+import ContentLoader from "react-content-loader";
 import styles from "./Card.module.scss";
 
 function Card({

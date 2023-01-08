@@ -77,6 +77,7 @@ function App() {
   const [items, setItems] = useState([]);
   const [favorites, setFavorites] = useState([]);
   const [cartItems, setCartItems] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     // axios
@@ -102,6 +103,7 @@ function App() {
     // но это продлит время запроса
 
     async function makeRequest() {
+      setIsLoading(true);
       const wears = await axios.get(
         "https://635cde0ecb6cf98e56a775e5.mockapi.io/api/v1/wears"
       );
@@ -115,6 +117,8 @@ function App() {
       setItems(wears.data);
       setCartItems(cart.data);
       setFavorites(favorites.data);
+
+      setIsLoading(false);
     }
     makeRequest();
   }, []);
@@ -192,6 +196,7 @@ function App() {
                   items={items}
                   cartItems={cartItems}
                   favorites={favorites}
+                  isLoading={isLoading}
                 />
               }
             />

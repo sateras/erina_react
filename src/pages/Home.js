@@ -1,3 +1,4 @@
+import ContentLoader from "react-content-loader";
 import Card from "../components/Card/Card";
 import SpecialOffer from "../components/SpecialOffer/specialOffer";
 
@@ -8,7 +9,43 @@ function Home({
   favorites,
   addToFavorites,
   deleteFromFavorites,
+  isLoading,
 }) {
+  const renderFakeItems = () => {
+    return [...Array(8)].map(() => (
+      <ContentLoader
+        speed={2}
+        width={290}
+        height={460}
+        viewBox="0 0 240 440"
+        backgroundColor="#f3f3f3"
+        foregroundColor="#ecebeb"
+      >
+        <rect x="0" y="0" rx="0" ry="0" width="240" height="320" />
+        <rect x="0" y="334" rx="5" ry="5" width="158" height="17" />
+        <rect x="0" y="364" rx="7" ry="7" width="206" height="25" />
+        <rect x="0" y="398" rx="6" ry="6" width="79" height="25" />
+        <rect x="175" y="397" rx="5" ry="5" width="63" height="28" />
+      </ContentLoader>
+    ));
+  };
+
+  const renderItems = () => {
+    return items.map((obj) => (
+      <Card
+        key={obj.title}
+        title={obj.title}
+        price={obj.price}
+        img={obj.img}
+        reviews={obj.reviews}
+        onAddToCart={() => addToCart(obj)}
+        onAddToFavorites={() => addToFavorites(obj)}
+        isInCart={cartItems.find((item) => item.title === obj.title)}
+        isInFavorites={favorites.find((item) => item.title === obj.title)}
+        isLoading={false}
+      />
+    ));
+  };
   return (
     <>
       <div className="content">
@@ -43,21 +80,7 @@ function Home({
           <h4>Showing our latest arrival on this summer</h4>
 
           <div className="items_table">
-            {items.map((obj) => (
-              <Card
-                key={obj.title}
-                title={obj.title}
-                price={obj.price}
-                img={obj.img}
-                reviews={obj.reviews}
-                onAddToCart={() => addToCart(obj)}
-                onAddToFavorites={() => addToFavorites(obj)}
-                isInCart={cartItems.find((item) => item.title === obj.title)}
-                isInFavorites={favorites.find(
-                  (item) => item.title === obj.title
-                )}
-              />
-            ))}
+            {isLoading ? renderFakeItems() : renderItems()}
           </div>
         </div>
       </main>
