@@ -2,24 +2,13 @@ import "./assets/styles/App.scss";
 import Footer from "./components/Footer/Footer";
 import Header from "./components/Header/Header";
 import Drawer from "./components/Drawer/Drawer";
-import { useEffect, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import axios from "axios";
 import { Route, Routes } from "react-router-dom";
+
 import Home from "./pages/Home";
-
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Favorites from "./pages/Favorites";
-
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <div>Hello world!</div>,
-  },
-  {
-    path: "/h",
-    element: <div>Hello world!</div>,
-  },
-]);
+import Shop from "./pages/Shop";
 
 // [
 //   {
@@ -71,6 +60,8 @@ const router = createBrowserRouter([
 //    "img": "/products/3.jpg"
 //   }
 //  ]
+
+export const AppContext = createContext({});
 
 function App() {
   const [cartOpened, setCartOpened] = useState(false);
@@ -169,65 +160,79 @@ function App() {
     }
   };
   return (
-    <div>
-      {cartOpened ? (
-        <Drawer
-          onClickOverlay={setCartOpened}
-          cartItems={cartItems}
-          onDeleteFromCart={deleteFromCart}
-          setCartItems={setCartItems}
-        />
-      ) : null}
-      <div className="appBody">
-        <div className="appContent">
-          <Header onClickCart={setCartOpened} />
+    <AppContext.Provider
+      value={{
+        items,
+        cartItems,
+        favorites,
+        addToCart,
+        addToFavorites,
+        isLoading,
+      }}
+    >
+      <div>
+        {cartOpened ? (
+          <Drawer
+            onClickOverlay={setCartOpened}
+            cartItems={cartItems}
+            onDeleteFromCart={deleteFromCart}
+            setCartItems={setCartItems}
+          />
+        ) : null}
+        <div className="appBody">
+          <div className="appContent">
+            <Header onClickCart={setCartOpened} />
 
-          {/* <RouterProvider router={router} /> */}
-          <Routes>
-            <Route
-              path="/"
-              element={
-                <Home
-                  addToCart={addToCart}
-                  addToFavorites={addToFavorites} // добавляет в изранное
-                  deleteFromFavorites={deleteFromFavorites} // а он удаляет
-                  // две отдельные фунцкий (addTo, deleteFrom) из-зa особенности бекенда
-                  // не умеющего нормально создовать список с уникальным id
-                  items={items}
-                  cartItems={cartItems}
-                  favorites={favorites}
-                  isLoading={isLoading}
-                />
-              }
-            />
-            <Route
-              path="/favorites"
-              element={
-                <Favorites
-                  cartItems={cartItems}
-                  favorites={favorites}
-                  setFavorites={setFavorites}
-                  deleteFromFavorites={deleteFromFavorites}
-                  addToCart={addToCart}
-                />
-              }
-            />
-            <Route
-              path="/about"
-              element={<h3 className="container">About</h3>}
-            />
-            <Route path="/shop" element={<h3 className="container">Shop</h3>} />
-            <Route path="/blog" element={<h3 className="container">Blog</h3>} />
-            <Route
-              path="/contact"
-              element={<h3 className="container">Contact</h3>}
-            />
-          </Routes>
+            {/* <RouterProvider router={router} /> */}
+            <Routes>
+              <Route
+                path="/"
+                element={
+                  <Home
+                    addToCart={addToCart}
+                    addToFavorites={addToFavorites} // добавляет в изранное
+                    deleteFromFavorites={deleteFromFavorites} // а он удаляет
+                    // две отдельные фунцкий (addTo, deleteFrom) из-зa особенности бекенда
+                    // не умеющего нормально создовать список с уникальным id
+                    items={items}
+                    cartItems={cartItems}
+                    favorites={favorites}
+                    isLoading={isLoading}
+                  />
+                }
+              />
+              <Route
+                path="/favorites"
+                element={
+                  <Favorites
+                    cartItems={cartItems}
+                    favorites={favorites}
+                    setFavorites={setFavorites}
+                    deleteFromFavorites={deleteFromFavorites}
+                    addToCart={addToCart}
+                  />
+                }
+              />
+              <Route
+                path="/about"
+                element={<h3 className="container">About</h3>}
+              />
+              <Route path="/shop" element={<Shop />} />
+              <Route
+                path="/blog"
+                element={<h3 className="container">Blog</h3>}
+              />
+              <Route
+                path="/contact"
+                element={<h3 className="container">Contact</h3>}
+              />
+            </Routes>
+          </div>
+
+          <Footer />
         </div>
-
-        <Footer />
       </div>
-    </div>
+    </AppContext.Provider>
   );
 }
 
