@@ -1,6 +1,6 @@
 import styles from "./Drawer.module.scss";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 function Drawer({ cartItems, onClickOverlay, onDeleteFromCart, setCartItems }) {
   const [isOrderComplete, setIsOrderComplete] = useState(false);
@@ -86,7 +86,7 @@ function Drawer({ cartItems, onClickOverlay, onDeleteFromCart, setCartItems }) {
             ))
           ) : (
             <div className={styles.cartItemIsEmpty}>
-              <img height={200} src="/emptycart.png" />
+              <img height={200} src="/emptycart.png" alt="emty card icon" />
               <b>Cart is empty</b>
               <p className={styles.cartItemIsEmptyP}>
                 Please add something to your cart

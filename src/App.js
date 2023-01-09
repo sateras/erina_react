@@ -9,6 +9,7 @@ import { Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import Favorites from "./pages/Favorites";
 import Shop from "./pages/Shop";
+import Orders from "./pages/Orders";
 
 // [
 //   {
@@ -225,6 +226,7 @@ function App() {
                 path="/contact"
                 element={<h3 className="container">Contact</h3>}
               />
+              <Route path="/orders" element={<Orders />} />
             </Routes>
           </div>
 

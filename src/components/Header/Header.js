@@ -32,9 +32,9 @@ function Header(props) {
         <div className={styles.cursor}>
           <img src="/svg/search_icon.svg" alt="search-icon" />
         </div>
-        <div className={styles.cursor}>
+        <Link to={`/orders`} className={styles.cursor}>
           <img src="/svg/person_icon.svg" alt="person-icon" />
-        </div>
+        </Link>
         <div className={styles.cursor} onClick={() => props.onClickCart(true)}>
           <img src="/svg/cart_icon.svg" alt="cart-icon" />
         </div>
