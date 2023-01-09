@@ -1,8 +1,39 @@
 import styles from "./Drawer.module.scss";
 import axios from "axios";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 function Drawer({ cartItems, onClickOverlay, onDeleteFromCart, setCartItems }) {
+  const [isOrderComplete, setIsOrderComplete] = useState(false);
+  const [orderNumber, setOrderNumber] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const makeOrder = async (order, total) => {
+    try {
+      setIsLoading(true);
+      const { data } = await axios.post(
+        "https://63bbca11cf99234bfa64244b.mockapi.io/orders",
+        {
+          items: order,
+          totalCost: total,
+          currency: "USA Dollars",
+        }
+      );
+
+      for await (let item of cartItems) {
+        await axios.delete(
+          `https://635cde0ecb6cf98e56a775e5.mockapi.io/api/v1/cart/${item.id}`
+        );
+      }
+      setCartItems([]);
+      setIsOrderComplete(true);
+      setOrderNumber(data.id);
+    } catch (error) {
+      alert("Не удалось осуществить заказ! (Подробнее в консоли)");
+      console.log("Error:  ", error);
+    }
+    setIsLoading(false);
+  };
+
   const totalPrice = (arr) => {
     let total = 0;
     arr.forEach((item) => {
@@ -31,7 +62,11 @@ function Drawer({ cartItems, onClickOverlay, onDeleteFromCart, setCartItems }) {
         </div>
 
         <div className={styles.cart}>
-          {cartItems.length > 0 ? (
+          {isLoading ? (
+            <div>Loading...</div>
+          ) : isOrderComplete ? (
+            <div>Заказ номер {orderNumber} оформлен!</div>
+          ) : cartItems.length > 0 ? (
             cartItems.map((obj) => (
               <div key={obj.id} className={styles.cartItem}>
                 <div className={styles.cartItemImg}>
@@ -51,6 +86,7 @@ function Drawer({ cartItems, onClickOverlay, onDeleteFromCart, setCartItems }) {
             ))
           ) : (
             <div className={styles.cartItemIsEmpty}>
+              <img height={200} src="/emptycart.png" />
               <b>Cart is empty</b>
               <p className={styles.cartItemIsEmptyP}>
                 Please add something to your cart
@@ -70,8 +106,15 @@ function Drawer({ cartItems, onClickOverlay, onDeleteFromCart, setCartItems }) {
             <b>${Math.round(cartTotalPrice * 0.05 * 100) / 100}</b>
           </div>
         </div>
-        {cartItems.length > 0 ? (
-          <button className={styles.greenBtn}>Confirm</button>
+        {isLoading ? (
+          <button className={styles.loadingGreenBtn}>Loading...</button>
+        ) : cartItems.length > 0 ? (
+          <button
+            onClick={() => makeOrder(cartItems, cartTotalPrice)}
+            className={styles.greenBtn}
+          >
+            Confirm
+          </button>
         ) : (
           <button className={styles.noneActiveBtn}>Confirm</button>
         )}

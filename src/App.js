@@ -131,7 +131,6 @@ function App() {
           item
         );
         setCartItems((prev) => [...prev, data]);
-        return;
       }
     } catch (error) {
       alert("Не удалость добваить в корзину! (Подробнее в консоли)");
