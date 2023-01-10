@@ -5,7 +5,7 @@ function Header(props) {
   return (
     <header className={styles.header}>
       <Link className={styles.header_link} to={`/`}>
-        <img src="/svg/logo.svg" />
+        <img src="/svg/logo.svg" alt="logo" />
         <h2 className={styles.h2}>Erina</h2>
       </Link>
       <nav className={styles.nav}>

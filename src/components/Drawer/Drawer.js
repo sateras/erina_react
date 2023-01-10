@@ -1,8 +1,11 @@
 import styles from "./Drawer.module.scss";
 import axios from "axios";
 import { useState } from "react";
+import { useCart } from "../../hooks/useCart";
 
-function Drawer({ cartItems, onClickOverlay, onDeleteFromCart, setCartItems }) {
+function Drawer({ onClickOverlay, onDeleteFromCart }) {
+  const { cartItems, setCartItems, totalPrice } = useCart();
+
   const [isOrderComplete, setIsOrderComplete] = useState(false);
   const [orderNumber, setOrderNumber] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
@@ -32,14 +35,6 @@ function Drawer({ cartItems, onClickOverlay, onDeleteFromCart, setCartItems }) {
       console.log("Error:  ", error);
     }
     setIsLoading(false);
-  };
-
-  const totalPrice = (arr) => {
-    let total = 0;
-    arr.forEach((item) => {
-      total += item.price;
-    });
-    return total;
   };
 
   // useEffect(() => {
