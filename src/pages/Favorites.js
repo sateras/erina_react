@@ -10,11 +10,13 @@ function Favorites({
   deleteFromFavorites,
 }) {
   useEffect(() => {
-    axios
-      .get("https://635cde0ecb6cf98e56a775e5.mockapi.io/api/v1/favorites")
-      .then((res) => {
-        setFavorites(res.data);
-      });
+    async function makeRequest() {
+      const { data } = await axios.get(
+        "https://635cde0ecb6cf98e56a775e5.mockapi.io/api/v1/favorites"
+      );
+      setFavorites(data);
+    }
+    makeRequest(); // eslint-disable-next-line
   }, []);
 
   return (
@@ -32,6 +34,7 @@ function Favorites({
                 img={obj.img}
                 reviews={obj.reviews}
                 isInFavorites={true}
+                onAddToFavorites={{}}
                 onAddToCart={() => addToCart(obj)}
                 onDeleteFromFavorites={() => deleteFromFavorites(obj.id)}
                 isInCart={cartItems.find((item) => item.title === obj.title)}

@@ -164,21 +164,23 @@ function App() {
       value={{
         items,
         cartItems,
+        setCartItems,
         favorites,
         addToCart,
         addToFavorites,
         isLoading,
+
+        cartOpened,
+        setCartOpened,
+        deleteFromCart,
       }}
     >
       <div>
-        {cartOpened ? (
-          <Drawer
-            onClickOverlay={setCartOpened}
-            cartItems={cartItems}
-            onDeleteFromCart={deleteFromCart}
-            setCartItems={setCartItems}
-          />
-        ) : null}
+        {/* {cartOpened ? (
+          *Drawer*
+        ) : null} */}
+        <Drawer />
+
         <div className="appBody">
           <div className="appContent">
             <Header onClickCart={setCartOpened} />

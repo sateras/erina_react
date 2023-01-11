@@ -1,10 +1,13 @@
 import styles from "./Drawer.module.scss";
 import axios from "axios";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useCart } from "../../hooks/useCart";
+import { AppContext } from "../../App";
 
-function Drawer({ onClickOverlay, onDeleteFromCart }) {
+function Drawer() {
   const { cartItems, setCartItems, totalPrice } = useCart();
+
+  const { setCartOpened, deleteFromCart, cartOpened } = useContext(AppContext);
 
   const [isOrderComplete, setIsOrderComplete] = useState(false);
   const [orderNumber, setOrderNumber] = useState(0);
@@ -47,11 +50,19 @@ function Drawer({ onClickOverlay, onDeleteFromCart }) {
 
   const cartTotalPrice = totalPrice(cartItems);
   return (
-    <div className={styles.overlay}>
-      <div className={styles.drawer}>
+    <div
+      className={`${styles.overlay} ${
+        cartOpened ? styles.overlayVisible : styles.overlayHidden
+      }`}
+    >
+      <div
+        className={`${styles.drawer} ${
+          cartOpened ? styles.drawerVisible : styles.drawerHidden
+        }`}
+      >
         <div className={styles.cart_title}>
           <h3>CART</h3>
-          <div onClick={() => onClickOverlay(false)} className={styles.out_btn}>
+          <div onClick={() => setCartOpened(false)} className={styles.out_btn}>
             ←
           </div>
         </div>
@@ -72,7 +83,7 @@ function Drawer({ onClickOverlay, onDeleteFromCart }) {
                   <b>${obj.price}</b>
                 </div>
                 <button
-                  onClick={() => onDeleteFromCart(obj.id)}
+                  onClick={() => deleteFromCart(obj.id)}
                   className={styles.cart_btn}
                 >
                   Delete
