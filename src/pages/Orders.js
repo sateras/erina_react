@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import ContentLoader from "react-content-loader";
+import Card from "../components/Card/Card";
 
 function Orders() {
   const [orders, setOrders] = useState([]);
@@ -17,7 +18,7 @@ function Orders() {
   }, []);
 
   const renderFakeOrders = () => {
-    return [...Array(3)].map(() => (
+    return [...Array(4)].map(() => (
       <ContentLoader
         speed={2}
         width={290}
@@ -34,12 +35,16 @@ function Orders() {
   const renderOrders = () => {
     return orders.map((obj) => (
       <div className="">
-        <p>id: {obj.id}</p>
+        <p>Order #{obj.id}</p>
         <p>total cost: {obj.totalCost}</p>
-        <p>
-          title:
+        <p className="items_table">
           {obj.items.map((obj) => (
-            <p>{obj.title}</p>
+            <Card
+              key={obj.title}
+              title={obj.title}
+              price={obj.price}
+              img={obj.img}
+            />
           ))}
         </p>
 

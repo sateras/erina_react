@@ -13,31 +13,36 @@ function Card({
 }) {
   return (
     <div className={styles.card}>
-      {isInCart ? (
-        <div onClick={onAddToCart} className={styles.addToCartAfter}>
-          ✓
-        </div>
-      ) : (
-        <div onClick={onAddToCart} className={styles.addToCart}>
-          +
+      {onAddToCart &&
+        (isInCart ? (
+          <div onClick={onAddToCart} className={styles.addToCartAfter}>
+            ✓
+          </div>
+        ) : (
+          <div onClick={onAddToCart} className={styles.addToCart}>
+            +
+          </div>
+        ))}
+      {onAddToFavorites && (
+        <div
+          onClick={isInFavorites ? onDeleteFromFavorites : onAddToFavorites}
+          className={
+            isInFavorites ? styles.addToFavoriteAfter : styles.addToFavorite
+          }
+        >
+          ❤
         </div>
       )}
-      <div
-        onClick={isInFavorites ? onDeleteFromFavorites : onAddToFavorites}
-        className={
-          isInFavorites ? styles.addToFavoriteAfter : styles.addToFavorite
-        }
-      >
-        ❤
-      </div>
 
       <div className={styles.card_img}>
         <img className={styles.img} src={img} alt="prod" />
       </div>
-      <div className={styles.first_row}>
-        <span className={styles.stars}>★★★★★</span>
-        <span className={styles.reviews}>Reviews {reviews}</span>
-      </div>
+      {reviews && (
+        <div className={styles.first_row}>
+          <span className={styles.stars}>★★★★★</span>
+          <span className={styles.reviews}>Reviews {reviews}</span>
+        </div>
+      )}
       <p className={styles.title}>{title}</p>
       <p className={styles.price}>${price}</p>
     </div>

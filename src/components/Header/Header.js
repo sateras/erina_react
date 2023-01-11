@@ -1,7 +1,10 @@
 import { Link } from "react-router-dom";
+import { useCart } from "../../hooks/useCart";
 import styles from "./Header.module.scss";
 
 function Header(props) {
+  const { cartItems } = useCart();
+
   return (
     <header className={styles.header}>
       <Link className={styles.header_link} to={`/`}>
@@ -37,6 +40,9 @@ function Header(props) {
         </Link>
         <div className={styles.cursor} onClick={() => props.onClickCart(true)}>
           <img src="/svg/cart_icon.svg" alt="cart-icon" />
+          {cartItems.length > 0 && (
+            <div className={styles.cartIndicator}>{cartItems.length}</div>
+          )}
         </div>
       </div>
     </header>
