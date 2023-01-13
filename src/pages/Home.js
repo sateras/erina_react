@@ -10,10 +10,12 @@ function Home({
   addToFavorites,
   deleteFromFavorites,
   isLoading,
+  deleteFromFavoritesWithTitle,
 }) {
   const renderFakeItems = () => {
-    return [...Array(8)].map(() => (
+    return [...Array(8)].map((obj) => (
       <ContentLoader
+        key={obj}
         speed={2}
         width={290}
         height={460}
@@ -40,6 +42,7 @@ function Home({
         reviews={obj.reviews}
         onAddToCart={() => addToCart(obj)}
         onAddToFavorites={() => addToFavorites(obj)}
+        onDeleteFromFavorites={() => deleteFromFavoritesWithTitle(obj.title)}
         isInCart={cartItems.find((item) => item.title === obj.title)}
         isInFavorites={favorites.find((item) => item.title === obj.title)}
         isLoading={false}

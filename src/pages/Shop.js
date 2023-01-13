@@ -4,8 +4,15 @@ import Card from "../components/Card/Card";
 import { AppContext } from "../App";
 
 function Shop() {
-  const { items, cartItems, favorites, addToCart, addToFavorites, isLoading } =
-    useContext(AppContext);
+  const {
+    items,
+    cartItems,
+    favorites,
+    addToCart,
+    addToFavorites,
+    isLoading,
+    deleteFromFavoritesWithTitle,
+  } = useContext(AppContext);
 
   const renderFakeItems = () => {
     return [...Array(8)].map(() => (
@@ -36,6 +43,7 @@ function Shop() {
         reviews={obj.reviews}
         onAddToCart={() => addToCart(obj)}
         onAddToFavorites={() => addToFavorites(obj)}
+        onDeleteFromFavorites={() => deleteFromFavoritesWithTitle(obj.title)}
         isInCart={cartItems.find((item) => item.title === obj.title)}
         isInFavorites={favorites.find((item) => item.title === obj.title)}
         isLoading={false}
