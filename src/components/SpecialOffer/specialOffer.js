@@ -1,11 +1,15 @@
 import styles from "./specialOffer.module.scss";
 
-function SpecialOffer(props) {
+function SpecialOffer() {
   return (
     <>
       <div className={styles.offersBox}>
         <div className={styles.leftBox}>
-          <img className={styles.woman} src="/pretty-woman.svg" alt="woman" />
+          <img
+            className={styles.woman}
+            src="erina_react/pretty-woman.svg"
+            alt="woman"
+          />
           <p className={styles.p1}>Get 40% Off</p>
           <p className={styles.p2}>
             Women’s New
@@ -15,7 +19,11 @@ function SpecialOffer(props) {
         </div>
 
         <div className={styles.rightBox}>
-          <img className={styles.man} src="/brutaliti-man.svg" alt="woman" />
+          <img
+            className={styles.man}
+            src="erina_react/brutaliti-man.svg"
+            alt="man"
+          />
 
           <p className={styles.p1}>Stay Upto Date</p>
           <p className={styles.p2}>
