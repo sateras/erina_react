@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/erina_react/static/css/main.c6f2452b.css",
-    "main.js": "/erina_react/static/js/main.144dbf38.js",
+    "main.js": "/erina_react/static/js/main.33870ea3.js",
     "index.html": "/erina_react/index.html",
     "main.c6f2452b.css.map": "/erina_react/static/css/main.c6f2452b.css.map",
-    "main.144dbf38.js.map": "/erina_react/static/js/main.144dbf38.js.map"
+    "main.33870ea3.js.map": "/erina_react/static/js/main.33870ea3.js.map"
   },
   "entrypoints": [
     "static/css/main.c6f2452b.css",
-    "static/js/main.144dbf38.js"
+    "static/js/main.33870ea3.js"
   ]
 }
