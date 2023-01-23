@@ -59,22 +59,22 @@ function Home({
       <main className="main container">
         <div className="main_fixed">
           <div>
-            <img src="erina_react/svg/bus_icon.svg" alt="icon" />
+            <img src="svg/bus_icon.svg" alt="icon" />
             <h6>Free shipping</h6>
             <p>Ut enim ad minim veniam liquip ami tomader</p>
           </div>
           <div>
-            <img src="erina_react/svg/card_icon.svg" alt="icon" />
+            <img src="svg/card_icon.svg" alt="icon" />
             <h6>Secure Payments</h6>
             <p>Eonim ad minim veniam liquip tomader</p>
           </div>
           <div>
-            <img src="erina_react/svg/return_icon.svg" alt="icon" />
+            <img src="svg/return_icon.svg" alt="icon" />
             <h6>Easy Returns</h6>
             <p>Be enim ad minim veniam liquipa ami tomader</p>
           </div>
           <div>
-            <img src="erina_react/svg/time_icon.svg" alt="icon" />
+            <img src="svg/time_icon.svg" alt="icon" />
             <h6>24/7 Support</h6>
             <p>Ut enim ad minim veniam liquip ami tomader</p>
           </div>

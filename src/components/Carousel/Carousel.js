@@ -17,7 +17,7 @@ export function Carousel() {
           </Link>
         </div>
         <div className={styles.image1}>
-          <img height={450} src="erina_react/readingMan.svg" alt="read man" />
+          <img height={450} src="readingMan.svg" alt="read man" />
         </div>
       </div>
       <span className={styles.bgLines}>

@@ -1,6 +1,6 @@
 import styles from "./Footer.module.scss";
 
-function Footer(params) {
+function Footer() {
   return (
     <footer className={styles.footer}>
       <div className={styles.container}>
@@ -8,12 +8,12 @@ function Footer(params) {
         <div className={styles.footer_right}>
           <div>
             <h6>Address</h6>
-            <p>20, Awesome Road, New York, Usa 4D BS3</p>
+            <p>20, Awesome Road, New Awesome York, Usa 4D BS3</p>
             <p>+123 456 7890</p>
-            <p>hello@ulina.com</p>
+            <p>hello@erina.com</p>
           </div>
           <div>
-            <h6>Useful Links</h6>
+            <h6>(not) Useful Links</h6>
             <p>Shop Coupon</p>
             <p>About Us</p>
             <p>Carrier</p>
@@ -21,10 +21,13 @@ function Footer(params) {
           </div>
           <div>
             <h6>Categories</h6>
-            <p>women</p>
+            <p>Women</p>
             <p>Accessories</p>
             <p>Jewelry</p>
             <p>Beauty Item</p>
+          </div>
+          <div className={styles.made_by}>
+            Made by <a href="https://github.com/sateras">sateras</a>
           </div>
         </div>
       </div>
