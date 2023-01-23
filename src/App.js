@@ -269,6 +269,23 @@ function App() {
                 element={<h3 className="container">Contact</h3>}
               />
               <Route path="/orders" element={<Orders />} />
+              <Route
+                path="*"
+                element={
+                  <Home
+                    addToCart={addToCart}
+                    addToFavorites={addToFavorites} // добавляет в изранное
+                    deleteFromFavorites={deleteFromFavorites} // а он удаляет
+                    // две отдельные фунцкий (addTo, deleteFrom) из-зa особенности бекенда
+                    // не умеющего нормально создовать список с уникальным id
+                    items={items}
+                    cartItems={cartItems}
+                    favorites={favorites}
+                    isLoading={isLoading}
+                    deleteFromFavoritesWithTitle={deleteFromFavoritesWithTitle}
+                  />
+                }
+              />
             </Routes>
           </div>
 

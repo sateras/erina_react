@@ -1,5 +1,6 @@
 import ContentLoader from "react-content-loader";
 import Card from "../components/Card/Card";
+import { Carousel } from "../components/Carousel/Carousel";
 import SpecialOffer from "../components/SpecialOffer/specialOffer";
 
 function Home({
@@ -52,7 +53,7 @@ function Home({
   return (
     <>
       <div className="content">
-        <div className="container">Content is here!</div>
+        <Carousel />
       </div>
 
       <main className="main container">
